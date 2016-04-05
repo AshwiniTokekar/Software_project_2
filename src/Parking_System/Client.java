@@ -16,9 +16,16 @@ public class Client {
      * @param args the command line arguments
      */
     static Airlock A[ ] = new Airlock[3];
-  
+    static void init()
+    {
+        for(int i=0; i<A.length;i++)
+        {
+            A[i]=new Airlock();
+        }
+    }
    public static void main(String args[])
    {
+        init();
         int v_n=1; //Number of vehicles entering at time
         int v_id=1;
         String pa_t="Credit";
