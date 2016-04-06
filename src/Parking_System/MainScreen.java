@@ -5,6 +5,8 @@
  */
 package Parking_System;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ashwini
@@ -14,15 +16,51 @@ public class MainScreen extends javax.swing.JDialog {
     /**
      * Creates new form MainScreen
      */
-    static Console c = new Console();
+    
     public MainScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        String services = c.get_services();
         Console_display.setEditable(false);
-        Console_display.setText(services);
+        Console_display.setText(prepareconsoledata());
+        
     }
 
+    String prepareconsoledata()
+    {
+        String services = Console.get_services();
+        Airlock A[] = Client.A;
+        int[] empty = Console.get_empty_spaces(A);
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n\nAirlock\tNumber of Empty Spaces\n");
+        for(int i=0; i<empty.length;i++)
+        {
+            sb.append("Airlock ");
+            sb.append(i+1);
+            sb.append("\t");
+            sb.append(empty[i]);
+            sb.append("\n");
+        }
+        sb.append("\n\n");
+        String empty_status = sb.toString();
+        Boolean[] status = Console.getairlockstatus(A);
+        StringBuilder sb1 = new StringBuilder();
+        sb1.append("Airlock\tStatus\n");
+        for(int i=0; i<status.length;i++)
+        {
+            sb1.append("Airlock ");
+            sb1.append(i+1);
+            sb1.append("\t");
+            if(!status[i])
+               sb1.append("Empty\n");
+            else
+                sb1.append("Full\n");
+            
+        }
+        sb1.append("\n\n");
+        String fin = services+empty_status+sb1.toString();
+        return fin;
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,6 +70,9 @@ public class MainScreen extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
+        jDialog3 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         VehicleId = new javax.swing.JTextField();
         VehicleType = new javax.swing.JComboBox<>();
@@ -45,6 +86,39 @@ public class MainScreen extends javax.swing.JDialog {
         Enter1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Console_display = new javax.swing.JTextArea();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
+        jDialog3.getContentPane().setLayout(jDialog3Layout);
+        jDialog3Layout.setHorizontalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog3Layout.setVerticalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -63,6 +137,11 @@ public class MainScreen extends javax.swing.JDialog {
         jLabel4.setText("Payment Type");
 
         Exit.setText("EXIT");
+        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitMouseClicked(evt);
+            }
+        });
 
         Enter1.setText("ENTER");
         Enter1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,11 +246,25 @@ public class MainScreen extends javax.swing.JDialog {
 
     private void Enter1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Enter1MouseClicked
         // TODO add your handling code here:
-        String services = c.get_services();
-        Console_display.setText(services);
+        
+        Console_display.setText(prepareconsoledata());
      //   Boolean[] status = c.getairlockstatus(A);
      //   int[] emptyspace = c.get_empty_spaces(A);
     }//GEN-LAST:event_Enter1MouseClicked
+
+    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
+        // TODO add your handling code here:
+        int vno =Integer.parseInt(VehicleId.getText());
+        Boolean ans =Client.handle_exit(vno);
+        if(!ans)
+        {
+            JOptionPane.showMessageDialog(null,"Exit not possible");
+        }
+        else
+        {
+             JOptionPane.showMessageDialog(null,"Exit Done");   
+        }
+    }//GEN-LAST:event_ExitMouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,6 +316,9 @@ public class MainScreen extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> PermitType;
     private javax.swing.JTextField VehicleId;
     private javax.swing.JComboBox<String> VehicleType;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JDialog jDialog3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

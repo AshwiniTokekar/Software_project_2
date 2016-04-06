@@ -22,6 +22,8 @@ public class Airlock {
     {
         return in_airlock;
     }
+    
+   
     Boolean full()
     {
         return !(parkingspace<100);
@@ -32,7 +34,7 @@ public class Airlock {
         if(v.vehicle_type.equals("Normal")&&in_airlock<=3)
         {
             parkingspace+=in_airlock;
-            v.set_airlock_id(this);
+            
             System.out.println(v.get_vehicle_id());
             return true;
         }

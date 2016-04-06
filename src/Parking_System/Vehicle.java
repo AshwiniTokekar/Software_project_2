@@ -20,7 +20,7 @@ public class Vehicle implements Runnable {
     String permit_type;
     String Payment_type;
     int Payment;
-    Airlock airlock_id;
+    int airlock_id;
     private Thread t;
     
     Vehicle( int vehicle_id,String vehicle_type,String permit_type,String Payment_type)
@@ -33,6 +33,18 @@ public class Vehicle implements Runnable {
         this.Payment_type=Payment_type;
         this.Payment=0;
     }
+
+    Vehicle(Vehicle v) {
+        this.vehicle_id=v.vehicle_id;
+        this.vehicle_type=v.vehicle_type;
+        this.entry_time=v.entry_time;
+        this.exit_time=null;
+        this.permit_type=v.permit_type;
+        this.Payment_type=v.Payment_type;
+        this.Payment=0;
+    }
+    
+    
     
     int get_vehicle_id()
     {
@@ -59,12 +71,12 @@ public class Vehicle implements Runnable {
         return this.exit_time.getTime();
     }
     
-    void set_airlock_id(Airlock num)
+    void set_airlock_id(int num)
     {
         airlock_id=num;
     }
     
-    Airlock get_airlock_id()
+    int get_airlock_id()
     {
         return airlock_id;
     }

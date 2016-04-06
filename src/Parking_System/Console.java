@@ -11,7 +11,7 @@ package Parking_System;
  */
 public class Console {
     
-    int[] get_empty_spaces(Airlock A[])
+    static int[] get_empty_spaces(Airlock A[])
     {
         int[] emptyspaces=new int[A.length];
         for(int i=0;i<A.length;i++)
@@ -21,7 +21,7 @@ public class Console {
         return emptyspaces;
     }
     
-    String get_services()
+    static String get_services()
     {
         String title="Parking Time\tService\tCost\n";
         String h_1="1 hour\tCar Wash\t10\n";
@@ -35,7 +35,7 @@ public class Console {
         return full;
     }
     
-    Boolean[] getairlockstatus(Airlock A[])
+    static Boolean[] getairlockstatus(Airlock A[])
     {
         Boolean[] full = new Boolean[A.length];
         for(int i=0;i<A.length;i++)
