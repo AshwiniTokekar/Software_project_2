@@ -44,6 +44,11 @@ public class Vehicle implements Runnable {
         this.Payment=0;
     }
     
+    @Override
+    public String toString()
+    {
+     return this.vehicle_id+","+this.Payment_type+","+this.permit_type+","+this.airlock_id+","+this.Payment;   
+    }
     float get_payment()
     {
         //System.out.println(exit_time.getTime()-entry_time.getTime());

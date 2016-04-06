@@ -1,5 +1,23 @@
 package Parking_System;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /*
@@ -19,6 +37,7 @@ public class Client {
      */
     static Airlock A[ ] = new Airlock[3];
     static Vehicle V[] = new Vehicle[300];
+    static ArrayList<String> History;
     static int v_in=0;
     static void init()
     {
@@ -26,6 +45,7 @@ public class Client {
         {
             A[i]=new Airlock();
         }
+        History = new ArrayList<String>();
     }
     Airlock[] getairlocks()
     {
@@ -40,7 +60,10 @@ public class Client {
         // TODO code application logic here
         
         
-        Survilence sur=new Survilence();        
+        Survilence sur=new Survilence(); 
+        StringBuilder sb = new StringBuilder();
+        sb.append(History.size()).append(",");
+        sb.append(new Date().toString()).append(":Entry,");
         if (sur.detectvehicle(v))
         {
             for (int i=0;i<A.length;i++)
@@ -59,7 +82,10 @@ public class Client {
                 }
                 A[i].closegate();
                 V[v_in]=new Vehicle(v);
-              System.out.println(V[v_in]);
+                sb.append(V[v_in].toString());
+                System.out.println(sb.toString());
+                History.add(sb.toString());
+                System.out.println(V[v_in]);
                 v_in++;
                 break;
             }
@@ -72,6 +98,9 @@ public class Client {
         // TODO code application logic here
         Vehicle temp = null;
         int aid = 0;
+        StringBuilder sb = new StringBuilder();
+        sb.append(History.size()).append(",");
+        sb.append(new Date().toString()).append(":Exit,");
         if(v_in == 0)
         {
           System.out.println("In if");
@@ -79,7 +108,7 @@ public class Client {
         }
        try{
             for(int i=0;i<v_in;i++)
-        {
+           {
             if(V[i].vehicle_id==vid)
             {
                 temp=V[i];
@@ -89,16 +118,58 @@ public class Client {
                }
                break;
             }
-        }
+          }
         
         aid = temp.get_airlock_id();
+        sb.append(temp.toString());
+        boolean add = History.add(sb.toString());
        }catch(NullPointerException e)
        {
          JOptionPane.showMessageDialog(null,"Exit not possible");  
        }
        
         return A[aid].exit(temp);
-        
-        
+          
     }
+   
+   static void print_log() throws IOException
+   {
+       Path file = Paths.get("log.txt");
+       Path write = Files.write(file,History,Charset.forName("UTF-8"));
+       
+      
+   }
+   
+   static void print_pdf()
+   {
+       Document pdfDoc = new Document(PageSize.A4);
+       
+      try {
+          String output_file;
+          output_file = "log.pdf";
+          PdfWriter.getInstance(pdfDoc, new FileOutputStream(output_file)).setPdfVersion(PdfWriter.VERSION_1_7);
+          pdfDoc.open();
+
+          Font myfont = new Font();
+          myfont.setStyle(Font.NORMAL);
+          myfont.setSize(11);
+
+          pdfDoc.add(new Paragraph("\n"));
+        
+          for(int i=0;i<History.size();i++) 
+          {
+                Paragraph para = new Paragraph( History.get(i) + "\n", myfont);
+                para.setAlignment(Element.ALIGN_JUSTIFIED);
+                pdfDoc.add(para);
+          }
+         
+        }catch (FileNotFoundException | DocumentException e) {
+                pdfDoc.close();
+        
+        } finally {
+              pdfDoc.close();
+       
+       }
+ 
+   }
 }
