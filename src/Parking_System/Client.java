@@ -74,7 +74,7 @@ public class Client {
         int aid = 0;
         if(v_in == 0)
         {
-          System.out.println("IN if");
+          System.out.println("In if");
          return false;   
         }
        try{

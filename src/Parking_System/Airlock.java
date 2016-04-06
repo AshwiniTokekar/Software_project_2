@@ -5,6 +5,9 @@
  */
 package Parking_System;
 
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ashwini
@@ -48,14 +51,18 @@ public class Airlock {
     
     Boolean exit(Vehicle v)
     {
+        v.setexittime(new Date());
+        float pay=v.get_payment();
         if(v.vehicle_type.equals("Normal")&&in_airlock<=3)
         {
             parkingspace-=in_airlock;
+            JOptionPane.showMessageDialog(null,"The payment amount is "+pay);  
             return true;
         }
         else if(v.vehicle_type.equals("SpaceOre")&&in_airlock==1)
         {
             parkingspace--;
+            JOptionPane.showMessageDialog(null,"The payment amount is "+pay);
             return true;
         }    
         return false;

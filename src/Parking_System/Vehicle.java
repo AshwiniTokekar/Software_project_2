@@ -44,7 +44,11 @@ public class Vehicle implements Runnable {
         this.Payment=0;
     }
     
-    
+    float get_payment()
+    {
+        //System.out.println(exit_time.getTime()-entry_time.getTime());
+        return (float) (((exit_time.getTime()-entry_time.getTime())/60000));
+    }
     
     int get_vehicle_id()
     {
