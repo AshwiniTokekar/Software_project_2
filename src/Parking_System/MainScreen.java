@@ -258,7 +258,7 @@ public class MainScreen extends javax.swing.JDialog {
         Boolean ans =Client.handle_exit(vno);
         if(!ans)
         {
-            JOptionPane.showMessageDialog(null,"Exit not possible");
+            JOptionPane.showMessageDialog(null,"Cannot Exit ");
         }
         else
         {
