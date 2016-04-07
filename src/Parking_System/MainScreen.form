@@ -125,20 +125,14 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="Print_log" min="-2" max="-2" attributes="0"/>
-                              <Component id="Enter1" min="-2" pref="136" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Enter1" pref="136" max="32767" attributes="0"/>
+                              <Component id="Print_log" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="Exit" min="-2" pref="136" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="Report" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
-                              </Group>
+                          <EmptySpace pref="87" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Exit" pref="136" max="32767" attributes="0"/>
+                              <Component id="Report" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -173,9 +167,9 @@
                               <Component id="jLabel4" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Enter1" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="Exit" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Exit" pref="49" max="32767" attributes="0"/>
+                              <Component id="Enter1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
