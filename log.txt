@@ -1,0 +1,6 @@
+0,Wed Apr 06 19:53:26 IST 2016:Entry,1,Credit Card,Hologram,0,0
+1,Wed Apr 06 19:53:35 IST 2016:Entry,3,Credit Card,Hologram,0,0
+2,Wed Apr 06 19:53:41 IST 2016:Entry,4,Credit Card,Hologram,0,0
+3,Wed Apr 06 19:53:53 IST 2016:Entry,6,Cash,Hologram,0,0
+4,Wed Apr 06 19:54:01 IST 2016:Entry,8,Card Swipe,Hologram,0,0
+5,Wed Apr 06 19:54:11 IST 2016:Entry,9,Debit Card,Permit,0,0
