@@ -2,6 +2,7 @@ Readme for Parking Garage for Space vehicles
 
 Prerequisities to run the code :
 - Java version 1.8.0_77 should be installed.
+- itext library for creating PDFs must be present on the system.
 
 How to run the code :
 - Using Terminal :
